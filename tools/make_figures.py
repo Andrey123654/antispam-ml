@@ -210,7 +210,90 @@ def main() -> None:
                          ROOT / "data" / "processed" / "test.csv")
     except Exception as e:  # noqa: BLE001
         print("распределение вероятностей не построено:", e)
+    data_analysis_panel()
     print("[ok] рисунки:", sorted(p.name for p in FIG.glob("*.png")))
+
+
+
+
+def data_analysis_panel() -> None:
+    """Четыре панели по итогам анализа входных данных."""
+    tr = pd.read_csv(ROOT / "data" / "processed" / "train.csv")
+    te = pd.read_csv(ROOT / "data" / "processed" / "test.csv")
+    for d in (tr, te):
+        d["body"] = d["body"].fillna("").astype(str)
+        d["subject"] = d["subject"].fillna("").astype(str)
+        d["text"] = (d["subject"] + "\n" + d["body"]).astype(str)
+
+    fig, axes = plt.subplots(2, 2, figsize=(11.5, 6.4))
+
+    # 1) баланс классов
+    ax = axes[0, 0]
+    vals = [[100 - tr["label"].mean() * 100, tr["label"].mean() * 100],
+            [100 - te["label"].mean() * 100, te["label"].mean() * 100]]
+    x = np.arange(2)
+    ax.bar(x - 0.18, [v[0] for v in vals], 0.34, label="нормальные", color=GREEN)
+    ax.bar(x + 0.18, [v[1] for v in vals], 0.34, label="спам", color=RED)
+    for i, v in enumerate(vals):
+        ax.text(i - 0.18, v[0] + 1.5, f"{v[0]:.1f}%", ha="center", fontsize=9)
+        ax.text(i + 0.18, v[1] + 1.5, f"{v[1]:.1f}%", ha="center", fontsize=9)
+    ax.set_xticks(x, ["обучение\n9 030 писем", "тест\n1 545 писем"])
+    ax.set_ylabel("доля класса, %")
+    ax.set_ylim(0, 100)
+    ax.set_title("1. Дисбаланс классов: 25.5 % спама", fontsize=11, fontweight="bold")
+    ax.legend(frameon=False, fontsize=9)
+
+    # 2) распределение длины
+    ax = axes[0, 1]
+    bins = np.linspace(0, 6000, 40)
+    ax.hist(tr.loc[tr["label"] == 0, "text"].str.len(), bins=bins, alpha=0.7,
+            label="нормальные", color=GREEN)
+    ax.hist(tr.loc[tr["label"] == 1, "text"].str.len(), bins=bins, alpha=0.6,
+            label="спам", color=RED)
+    ax.axvline(tr["text"].str.len().median(), color="#22262E", linestyle="--", linewidth=1,
+               label=f"медиана {int(tr['text'].str.len().median())} симв.")
+    ax.set_xlabel("длина письма, символов")
+    ax.set_ylabel("число писем")
+    ax.set_title("2. Длина почти не различает классы", fontsize=11, fontweight="bold")
+    ax.legend(frameon=False, fontsize=9)
+
+    # 3) сдвиг домена
+    ax = axes[1, 0]
+    metrics = ["HTML-письма", "кириллица", "слова вне\nсловаря (OOV)"]
+    train_vals = [tr["is_html"].mean() * 100, 0.0, 0.0]
+    test_vals = [te["is_html"].mean() * 100, 2.2, 3.1]
+    x = np.arange(len(metrics))
+    ax.bar(x - 0.18, train_vals, 0.34, label="обучение", color=BLUE)
+    ax.bar(x + 0.18, test_vals, 0.34, label="тест", color="#F76B15")
+    for i, (a, b) in enumerate(zip(train_vals, test_vals)):
+        ax.text(i - 0.18, a + 1, f"{a:.0f}%", ha="center", fontsize=8.5)
+        ax.text(i + 0.18, b + 1, f"{b:.1f}%", ha="center", fontsize=8.5)
+    ax.set_xticks(x, metrics, fontsize=9)
+    ax.set_ylabel("% писем / слов")
+    ax.set_title("3. Тест — другой домен", fontsize=11, fontweight="bold")
+    ax.legend(frameon=False, fontsize=9)
+
+    # 4) состав теста
+    ax = axes[1, 1]
+    seen = len(te) - int((~te["text"].isin(set(tr["text"]))).sum())
+    unseen_n = len(te) - seen
+    ax.barh([0], [seen], color="#8B8D98", label=f"копии обучения — {seen}")
+    ax.barh([0], [unseen_n], left=[seen], color=BLUE, label=f"новые письма — {unseen_n}")
+    ax.set_xlim(0, len(te))
+    ax.set_yticks([])
+    ax.set_xlabel("писем в тесте")
+    ax.text(seen / 2, 0, f"{seen / len(te) * 100:.0f} %", ha="center", va="center",
+            color="white", fontsize=13, fontweight="bold")
+    ax.text(seen + unseen_n / 2, 0, f"{unseen_n / len(te) * 100:.0f} %", ha="center",
+            va="center", color="white", fontsize=11, fontweight="bold")
+    ax.set_title("4. Тест на 78 % совпадает с обучением", fontsize=11, fontweight="bold")
+    ax.legend(frameon=False, fontsize=9, loc="upper center", bbox_to_anchor=(0.5, -0.28))
+    ax.grid(False)
+
+    fig.suptitle("Что показал анализ входных данных", fontsize=13.5, fontweight="bold", y=1.0)
+    fig.tight_layout()
+    fig.savefig(FIG / "data_analysis.png", bbox_inches="tight")
+    plt.close(fig)
 
 
 if __name__ == "__main__":

@@ -13,3 +13,4 @@ data/processed/dataset.csv
 # бинарные артефакты моделей: воспроизводятся run.sh (~10 минут)
 artifacts/*.joblib
 data/processed/test.csv
+Итоговое_задание_антиспам.zip
