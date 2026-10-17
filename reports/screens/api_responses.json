@@ -1,0 +1,38 @@
+{
+  "health": {
+    "status": "ok",
+    "threshold": 0.8,
+    "category_model": true,
+    "oof_f1": 0.9774
+  },
+  "spam": {
+    "is_spam": true,
+    "spam_probability": 1.0,
+    "category": "реклама",
+    "threshold": 0.8,
+    "flags": {
+      "urls": 0,
+      "html": false
+    }
+  },
+  "ham": {
+    "is_spam": false,
+    "spam_probability": 0.05061,
+    "category": "прочее",
+    "threshold": 0.8,
+    "flags": {
+      "urls": 0,
+      "html": false
+    }
+  },
+  "job": {
+    "is_spam": true,
+    "spam_probability": 0.98903,
+    "category": "работа",
+    "threshold": 0.8,
+    "flags": {
+      "urls": 0,
+      "html": false
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+
+# сырые корпуса и тяжёлые промежуточные файлы (воспроизводятся scripts/download_data.sh)
+data/raw/
+data/processed/train.csv
+data/processed/dataset.csv
+*.tar.xz
+*.tar.gz
+*.zip
+
+# бинарные артефакты моделей: воспроизводятся run.sh (~10 минут)
+artifacts/*.joblib
+data/processed/test.csv

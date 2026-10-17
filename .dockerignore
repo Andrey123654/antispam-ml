@@ -1,0 +1,8 @@
+.venv/
+data/raw/
+data/processed/train.csv
+data/processed/test.csv
+data/processed/synthetic_ham.csv
+__pycache__/
+*.pyc
+reports/

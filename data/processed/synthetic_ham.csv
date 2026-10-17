@@ -1,0 +1,51 @@
+label,source,orig_id,subject,sender,body,text,is_html,has_attach,n_parts
+0,synthetic:transactional,syn0_ru,Сброс пароля,no-reply@example.ru,"Вы запросили восстановление пароля на МойСервис. Перейдите по ссылке, чтобы задать новый пароль. Ссылка действует 24 часа. Если вы не запрашивали сброс, просто проигнорируйте письмо. Служба поддержки МойСервис.","Сброс пароля
+Вы запросили восстановление пароля на МойСервис. Перейдите по ссылке, чтобы задать новый пароль. Ссылка действует 24 часа. Если вы не запрашивали сброс, просто проигнорируйте письмо. Служба поддержки МойСервис.",0,0,1
+0,synthetic:transactional,syn1_ru,Код авторизации,no-reply@example.ru,"Ваш код авторизации: 483920. Никому не сообщайте этот код. Код действует 10 минут. Если вы не пытались войти в аккаунт, смените пароль.","Код авторизации
+Ваш код авторизации: 483920. Никому не сообщайте этот код. Код действует 10 минут. Если вы не пытались войти в аккаунт, смените пароль.",0,0,1
+0,synthetic:transactional,syn2_ru,Новая попытка входа,no-reply@example.ru,"Мы заметили, что в ваш аккаунт выполнен вход с нового устройства. Если это были вы, ничего делать не нужно. Если нет — смените пароль в настройках безопасности.","Новая попытка входа
+Мы заметили, что в ваш аккаунт выполнен вход с нового устройства. Если это были вы, ничего делать не нужно. Если нет — смените пароль в настройках безопасности.",0,0,1
+0,synthetic:transactional,syn3_ru,Подтверждение e-mail,no-reply@example.ru,"Спасибо за регистрацию. Подтвердите адрес электронной почты, перейдя по ссылке в письме. После подтверждения аккаунт будет активирован.","Подтверждение e-mail
+Спасибо за регистрацию. Подтвердите адрес электронной почты, перейдя по ссылке в письме. После подтверждения аккаунт будет активирован.",0,0,1
+0,synthetic:transactional,syn4_ru,Ваш заказ принят,no-reply@example.ru,"Заказ № 4821 принят. Состав заказа и сумма указаны в личном кабинете. Мы сообщим, когда заказ будет передан в доставку.","Ваш заказ принят
+Заказ № 4821 принят. Состав заказа и сумма указаны в личном кабинете. Мы сообщим, когда заказ будет передан в доставку.",0,0,1
+0,synthetic:transactional,syn5_ru,Заказ отправлен,no-reply@example.ru,"Ваш заказ № 4821 передан в доставку. Отследить посылку можно по номеру в личном кабинете. Спасибо, что выбрали МойСервис.","Заказ отправлен
+Ваш заказ № 4821 передан в доставку. Отследить посылку можно по номеру в личном кабинете. Спасибо, что выбрали МойСервис.",0,0,1
+0,synthetic:transactional,syn6_ru,Квитанция об оплате,no-reply@example.ru,Оплата по счёту № 4821 прошла успешно. Квитанция приложена к письму. Бухгалтерия: buh@example.ru.,"Квитанция об оплате
+Оплата по счёту № 4821 прошла успешно. Квитанция приложена к письму. Бухгалтерия: buh@example.ru.",0,0,1
+0,synthetic:transactional,syn7_ru,Приглашение на встречу,no-reply@example.ru,"Коллеги, напоминаю о встрече в понедельник в 11:00 в переговорной. Повестка: статус проекта, вопросы по срокам. Просьба подтвердить участие.","Приглашение на встречу
+Коллеги, напоминаю о встрече в понедельник в 11:00 в переговорной. Повестка: статус проекта, вопросы по срокам. Просьба подтвердить участие.",0,0,1
+0,synthetic:transactional,syn8_ru,Протокол совещания,no-reply@example.ru,"Направляю протокол совещания. Решения: доработать раздел 3, согласовать смету до пятницы. Замечания направляйте в ответном письме.","Протокол совещания
+Направляю протокол совещания. Решения: доработать раздел 3, согласовать смету до пятницы. Замечания направляйте в ответном письме.",0,0,1
+0,synthetic:transactional,syn9_ru,Вопрос по лабораторной,no-reply@example.ru,"Здравствуйте! Подскажите, пожалуйста, по третьей задаче: нужно ли приводить вывод формул? Если да, то в каком виде оформлять?","Вопрос по лабораторной
+Здравствуйте! Подскажите, пожалуйста, по третьей задаче: нужно ли приводить вывод формул? Если да, то в каком виде оформлять?",0,0,1
+0,synthetic:transactional,syn10_ru,Оценка за семестр,no-reply@example.ru,Здравствуйте! Оценка выставлена в ведомость. Пересдача возможна по графику кафедры. Вопросы по критериям можно задать в чате.,"Оценка за семестр
+Здравствуйте! Оценка выставлена в ведомость. Пересдача возможна по графику кафедры. Вопросы по критериям можно задать в чате.",0,0,1
+0,synthetic:transactional,syn11_ru,Лицензия активирована,no-reply@example.ru,Ваша лицензия активирована. Ключ и сертификат доступны в личном кабинете. Поддержка отвечает на письма в рабочие дни.,"Лицензия активирована
+Ваша лицензия активирована. Ключ и сертификат доступны в личном кабинете. Поддержка отвечает на письма в рабочие дни.",0,0,1
+0,synthetic:transactional,syn12_ru,Счёт на оплату,no-reply@example.ru,Во вложении счёт на оплату обучения за семестр. Просим произвести оплату до 25 числа. По вопросам начислений обращайтесь в бухгалтерию.,"Счёт на оплату
+Во вложении счёт на оплату обучения за семестр. Просим произвести оплату до 25 числа. По вопросам начислений обращайтесь в бухгалтерию.",0,0,1
+0,synthetic:transactional,syn13_ru,Уведомление о доставке,no-reply@example.ru,"Курьер прибудет завтра с 10:00 до 14:00. Если время неудобно, перенесите доставку в приложении. Номер заказа 4821.","Уведомление о доставке
+Курьер прибудет завтра с 10:00 до 14:00. Если время неудобно, перенесите доставку в приложении. Номер заказа 4821.",0,0,1
+0,synthetic:transactional,syn14_ru,Напоминание о занятии,no-reply@example.ru,"Напоминаем, что завтра в 18:30 начинается вебинар по курсу. Ссылка на подключение в календаре. Запись будет доступна на следующий день.","Напоминание о занятии
+Напоминаем, что завтра в 18:30 начинается вебинар по курсу. Ссылка на подключение в календаре. Запись будет доступна на следующий день.",0,0,1
+0,synthetic:transactional,syn15_en,Welcome to {brand},no-reply@example.com,"Thanks for signing up. Please confirm your email address by clicking the link below so we can activate your account. If this wasn't you, ignore this message.","Welcome to {brand}
+Thanks for signing up. Please confirm your email address by clicking the link below so we can activate your account. If this wasn't you, ignore this message.",0,0,1
+0,synthetic:transactional,syn16_en,Your receipt from {brand},no-reply@example.com,Thanks for your purchase. Order A-102938 was charged successfully. You can download the invoice from your account page. Questions? Just reply to this email.,"Your receipt from {brand}
+Thanks for your purchase. Order A-102938 was charged successfully. You can download the invoice from your account page. Questions? Just reply to this email.",0,0,1
+0,synthetic:transactional,syn17_en,Password reset requested,no-reply@example.com,"We received a request to reset the password for your account. Follow the link to choose a new password. The link expires in 24 hours. If you did not request this, no action is needed.","Password reset requested
+We received a request to reset the password for your account. Follow the link to choose a new password. The link expires in 24 hours. If you did not request this, no action is needed.",0,0,1
+0,synthetic:transactional,syn18_en,New sign-in to your account,no-reply@example.com,"A new sign-in was detected on your account from a new device. If this was you, you can ignore this email. Otherwise reset your password and review active sessions.","New sign-in to your account
+A new sign-in was detected on your account from a new device. If this was you, you can ignore this email. Otherwise reset your password and review active sessions.",0,0,1
+0,synthetic:transactional,syn19_en,Your licence certificate,no-reply@example.com,"Congratulations, your educational licence has been issued. The certificate is available in your account. This is your order confirmation number A-102938.","Your licence certificate
+Congratulations, your educational licence has been issued. The certificate is available in your account. This is your order confirmation number A-102938.",0,0,1
+0,synthetic:transactional,syn20_en,Weekly digest,no-reply@example.com,"Here is your weekly summary: 3 new articles, 2 replies to your comments, and 1 mention. You can change notification settings in your profile.","Weekly digest
+Here is your weekly summary: 3 new articles, 2 replies to your comments, and 1 mention. You can change notification settings in your profile.",0,0,1
+0,synthetic:transactional,syn21_en,Calendar reminder,no-reply@example.com,Reminder: project sync tomorrow at 10:00. Agenda: sprint review and planning. Join with the link in the calendar invitation.,"Calendar reminder
+Reminder: project sync tomorrow at 10:00. Agenda: sprint review and planning. Join with the link in the calendar invitation.",0,0,1
+0,synthetic:transactional,syn22_en,Document signed,no-reply@example.com,Your document has been signed by all parties. A copy is attached for your records. Thank you for using our service.,"Document signed
+Your document has been signed by all parties. A copy is attached for your records. Thank you for using our service.",0,0,1
+0,synthetic:transactional,syn23_en,Account statement,no-reply@example.com,Your monthly statement is ready. Log in to view the details. This message is informational and does not require a response.,"Account statement
+Your monthly statement is ready. Log in to view the details. This message is informational and does not require a response.",0,0,1
+0,synthetic:transactional,syn24_en,Registration confirmed,no-reply@example.com,"Your registration is confirmed. You can now log in with the credentials you chose. If you need help, reply to this email and our team will assist you.","Registration confirmed
+Your registration is confirmed. You can now log in with the credentials you chose. If you need help, reply to this email and our team will assist you.",0,0,1
