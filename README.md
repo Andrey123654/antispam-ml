@@ -73,6 +73,24 @@ docker build -t antispam-service:1.0.0 -f service/Dockerfile .
 docker run -p 8000:8000 -e SPAM_THRESHOLD=0.80 antispam-service:1.0.0
 ```
 
+## Публикация (демо-стенд)
+
+```bash
+# временный публичный адрес без регистрации (живёт, пока запущен скрипт)
+bash scripts/serve_public.sh          # печатает https://<имя>.trycloudflare.com
+
+# постоянный хостинг: Render (бесплатный тариф, Docker)
+#   New → Blueprint → подключить репозиторий → render.yaml подхватится автоматически
+```
+
+Проверка опубликованного сервиса:
+
+```bash
+curl https://<адрес>/health
+curl -s -X POST https://<адрес>/predict -H "Content-Type: application/json" \
+  -d '{"text": "Congratulations! You won $1,000,000. Click here to claim your prize!"}'
+```
+
 ## API
 
 | Метод | Путь | Назначение |

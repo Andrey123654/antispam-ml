@@ -35,7 +35,7 @@ MODEL_DIR = Path(os.environ.get("MODEL_DIR", ROOT / "artifacts"))
 THRESHOLD = float(os.environ.get("SPAM_THRESHOLD", "0.5"))
 
 app = FastAPI(
-    title="Антиспам-фильтр",
+    title="MKB251-RazhnovAP · антиспам-фильтр",
     description="Классификация писем как спам/не спам и определение категории письма",
     version="1.0.0",
 )
@@ -107,6 +107,7 @@ def _predict(emails: List[Email]) -> List[Prediction]:
 def root() -> dict:
     return {
         "service": "антиспам-фильтр",
+        "owner": "MKB251-RazhnovAP",
         "version": app.version,
         "endpoints": ["/predict", "/predict_batch", "/health", "/docs"],
         "model": "TF-IDF (слова + символьные n-граммы) + LR/SVM/NB/HistGB + стекинг",

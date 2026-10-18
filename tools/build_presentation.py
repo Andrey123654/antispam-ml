@@ -25,7 +25,7 @@ TEMPLATE = Path(
     "/Users/andrey/.dsh/attachments/v1/files/94/"
     "943ab2feb6e56cc29fe56d03929b7dc97c25abb3f948366d614a79f5da47e7e6/"
     "Итоговое задание (Презентация-описание работы).pptx")
-OUT = ROOT / "reports" / "Итоговое_задание_антиспам.pptx"
+OUT = ROOT / "reports" / "MKB251-RazhnovAP_Итоговое_задание.pptx"
 FIG = ROOT / "reports" / "figures"
 SCR = ROOT / "reports" / "screens"
 
@@ -150,7 +150,7 @@ def main() -> None:
             r.font.color.rgb = BLUE
             p2 = tf.add_paragraph()
             r2 = p2.add_run()
-            r2.text = "Команда № ____  ·  Фамилия И.О.  ·  группа ____"
+            r2.text = "MKB251-RazhnovAP  ·  Ражнов А.П.  ·  группа МКБ-251"
             r2.font.size = Pt(12)
             r2.font.color.rgb = GREY
 
@@ -401,6 +401,9 @@ def main() -> None:
         ("", 0, False, DARK, 4),
         ("Воспроизведение: bash scripts/download_data.sh && bash run.sh "
          "(данные → обучение → категории → рисунки).", 0, True, GREEN, 11),
+        ("", 0, False, DARK, 3),
+        ("Опубликованный сервис: https://mkb251-razhnovap-antispam.onrender.com", 0, True,
+         ACCENT, 11),
     ], size=11, height=Inches(4.3))
 
     # ---------- слайд 14: упаковка ----------
@@ -423,6 +426,12 @@ def main() -> None:
         ("Надёжность", 0, True, BLUE, 12),
         ("Healthcheck раз в 30 с, ограничение пакета, валидация входа через Pydantic, "
          "версии библиотек закреплены — иначе pickle модели несовместим.", 0, False, DARK, 9.5),
+        ("", 0, False, DARK, 3),
+        ("Публикация", 0, True, BLUE, 12),
+        ("Постоянный хостинг: mkb251-razhnovap-antispam.onrender.com (Render, Docker, "
+         "render.yaml в репозитории). Временный стенд без регистрации — "
+         "scripts/serve_public.sh (локальный сервис + туннель cloudflared).",
+         0, False, DARK, 9.5),
     ], size=10, height=Inches(4.1))
     add_picture(s, SCR / "docker_build.png", left=5.0, top=0.95, width=4.75)
     add_picture(s, SCR / "docker_api.png", left=5.0, top=3.15, width=4.75)
