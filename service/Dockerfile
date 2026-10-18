@@ -16,7 +16,10 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 # код и артефакты модели
 COPY src/ /app/src/
 COPY service/ /app/service/
-COPY artifacts/ /app/artifacts/
+COPY scripts/ /app/scripts/
+
+# модели скачиваются из GitHub Releases при сборке: в репозитории только код
+RUN python /app/scripts/fetch_models.py /app/artifacts
 
 EXPOSE 8000
 

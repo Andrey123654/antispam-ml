@@ -10,7 +10,9 @@ data/processed/dataset.csv
 *.tar.gz
 *.zip
 
-# бинарные артефакты моделей: воспроизводятся run.sh (~10 минут)
-artifacts/*.joblib
 data/processed/test.csv
+
+# Обученные модели (48 МБ) лежат в GitHub Releases, а не в репозитории:
+# при сборке образа их скачивает scripts/fetch_models.py (см. Dockerfile).
+artifacts/*.joblib
 Итоговое_задание_антиспам.zip
