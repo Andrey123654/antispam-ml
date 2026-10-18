@@ -73,14 +73,24 @@ docker build -t antispam-service:1.0.0 -f service/Dockerfile .
 docker run -p 8000:8000 -e SPAM_THRESHOLD=0.80 antispam-service:1.0.0
 ```
 
-## Публикация (демо-стенд)
+## Публикация (постоянный стенд)
+
+**Адрес после деплоя:** https://mkb251-razhnovap-antispam.onrender.com
+
+Развёртывание в один клик: <https://render.com/deploy?repo=https://github.com/Andrey123654/antispam-ml>
+(вход через GitHub, карта не нужна; конфигурация берётся из `render.yaml`).
+
+Особенности:
+* модели (48 МБ) лежат в [GitHub Releases](https://github.com/Andrey123654/antispam-ml/releases/tag/v1.0-models),
+  при сборке образа их скачивает `scripts/fetch_models.py` — в репозитории только код;
+* бесплатный тариф Render: сервис засыпает после 15 минут без запросов и просыпается
+  при первом обращении (30–60 с), работает без вашего компьютера;
+* проверка: `curl https://mkb251-razhnovap-antispam.onrender.com/health`.
+
+Временный стенд без регистрации (живёт, пока запущен скрипт):
 
 ```bash
-# временный публичный адрес без регистрации (живёт, пока запущен скрипт)
 bash scripts/serve_public.sh          # печатает https://<имя>.trycloudflare.com
-
-# постоянный хостинг: Render (бесплатный тариф, Docker)
-#   New → Blueprint → подключить репозиторий → render.yaml подхватится автоматически
 ```
 
 Проверка опубликованного сервиса:

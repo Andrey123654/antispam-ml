@@ -18,7 +18,8 @@ COPY src/ /app/src/
 COPY service/ /app/service/
 COPY scripts/ /app/scripts/
 
-# модели скачиваются из GitHub Releases при сборке: в репозитории только код
+# метрики (маленькие json) копируются, модели — скачиваются из Releases
+COPY artifacts/*.json /app/artifacts/
 RUN python /app/scripts/fetch_models.py /app/artifacts
 
 EXPOSE 8000
