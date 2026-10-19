@@ -1,7 +1,7 @@
 # Корневой Dockerfile для хостингов, которые ищут его в корне (Render и др.)
 FROM python:3.14-slim
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
-    MODEL_DIR=/app/artifacts SPAM_THRESHOLD=0.5
+    MODEL_DIR=/app/artifacts
 WORKDIR /app
 COPY service/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
@@ -10,7 +10,7 @@ COPY service/ /app/service/
 COPY scripts/ /app/scripts/
 
 # метрики (маленькие json) копируются, модели — скачиваются из Releases
-COPY artifacts/*.json /app/artifacts/
+COPY artifacts/ /app/artifacts/
 RUN python /app/scripts/fetch_models.py /app/artifacts
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \

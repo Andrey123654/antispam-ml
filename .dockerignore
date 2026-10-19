@@ -6,3 +6,7 @@ data/processed/synthetic_ham.csv
 __pycache__/
 *.pyc
 reports/
+artifacts/legacy_v1/
+artifacts/spam_bundle.joblib
+artifacts/**/*.npz
+artifacts/**/test_predictions.csv

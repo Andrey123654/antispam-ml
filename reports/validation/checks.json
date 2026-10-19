@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "checks": [
+    "source checksum",
+    "split isolation",
+    "same-model subset evaluation",
+    "threshold parity",
+    "offline URL features",
+    "saved-model/API parity",
+    "request bounds",
+    "demo page"
+  ],
+  "test_rows": 1545,
+  "threshold": 0.7103761388771067
+}

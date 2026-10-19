@@ -1,0 +1,59 @@
+{
+  "release": "v2.0-hackathon-email",
+  "models": [
+    {
+      "path": "hackathon_v2/spam_bundle.joblib",
+      "sha256": "e8a529706c4dc31992ddce5c8b32849d17abd3965cd254ab6c556ea746716509",
+      "parts": [
+        {
+          "name": "spam_v2.part1",
+          "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v2.0-hackathon-email/spam_v2.part1",
+          "size": 7800000,
+          "sha256": "629b3cf20748a8e90a4f66f3575bfb01a1e2e12acf40c9d40db6455df8d1ff45"
+        },
+        {
+          "name": "spam_v2.part2",
+          "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v2.0-hackathon-email/spam_v2.part2",
+          "size": 7800000,
+          "sha256": "54aae2cdec5ff21ae436ccfc003cf3ffd1047ff4b53bf827ffb558d07fbc96c2"
+        },
+        {
+          "name": "spam_v2.part3",
+          "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v2.0-hackathon-email/spam_v2.part3",
+          "size": 7800000,
+          "sha256": "7853ae19242888e4f72d244301a26efb0b44146b2d1b358a4a9681fde1c655af"
+        },
+        {
+          "name": "spam_v2.part4",
+          "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v2.0-hackathon-email/spam_v2.part4",
+          "size": 7800000,
+          "sha256": "bb8a42e9edc02b5c49be432e05cd887db8b9353d87086ae2d9c8eec6d5a7dd28"
+        },
+        {
+          "name": "spam_v2.part5",
+          "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v2.0-hackathon-email/spam_v2.part5",
+          "size": 6525208,
+          "sha256": "28de3ee338074a5c6042e7f1a64bf85f6c69b73b788fd962401f470a8d0d3978"
+        }
+      ]
+    },
+    {
+      "path": "category_bundle.joblib",
+      "sha256": "ecbeb31d89d4e15d579d101835233739c4db909a3be3543f4ca5436716923eb9",
+      "parts": [
+        {
+          "name": "category_v2.part1",
+          "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v2.0-hackathon-email/category_v2.part1",
+          "size": 7800000,
+          "sha256": "a47fdf98b0c80b9ff0c15e785c7740c7a1957599758246506ffb07db60361c8b"
+        },
+        {
+          "name": "category_v2.part2",
+          "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v2.0-hackathon-email/category_v2.part2",
+          "size": 3953823,
+          "sha256": "5944893e341cc32855c2c6d2ff4a3a84c05ab0cb5761478c9ad2fb869d5fb16f"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "health": {
+    "status": "ok",
+    "threshold": 0.7103761388771067,
+    "category_model": true,
+    "model_kind": "hackathon-email-v2",
+    "metrics_threshold": 0.7103761388771067,
+    "threshold_overridden": false
+  },
+  "prediction": {
+    "is_spam": false,
+    "spam_probability": 0.0,
+    "category": "прочее",
+    "threshold": 0.7103761388771067,
+    "flags": {
+      "urls": 0,
+      "html": false,
+      "brand_mimicry": false,
+      "userinfo_in_url": false,
+      "network_requests": false
+    }
+  }
+}

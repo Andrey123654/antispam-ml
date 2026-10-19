@@ -23,6 +23,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,14 +31,15 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from category import predict as predict_category  # noqa: E402
 from train import predict_bundle  # noqa: E402
+from adapt_hackathon import predict_bundle as predict_hackathon_bundle  # noqa: E402
+from hackathon_adapter import email_url_features  # noqa: E402
 
 MODEL_DIR = Path(os.environ.get("MODEL_DIR", ROOT / "artifacts"))
-THRESHOLD = float(os.environ.get("SPAM_THRESHOLD", "0.5"))
 
 app = FastAPI(
     title="MKB251-RazhnovAP · антиспам-фильтр",
-    description="Классификация писем как спам/не спам и определение категории письма",
-    version="1.0.0",
+    description="Антиспам на основе подхода хакатона: NLP письма и автономные признаки ссылок",
+    version="2.0.0",
 )
 
 state: dict = {}
@@ -45,23 +47,25 @@ state: dict = {}
 
 @app.on_event("startup")
 def load_models() -> None:
-    spam_path = MODEL_DIR / "spam_bundle.joblib"
+    spam_path = MODEL_DIR / "hackathon_v2" / "spam_bundle.joblib"
     cat_path = MODEL_DIR / "category_bundle.joblib"
     if not spam_path.exists():
         raise RuntimeError(f"не найден артефакт модели: {spam_path}")
     state["spam"] = joblib.load(spam_path)
     state["category"] = joblib.load(cat_path) if cat_path.exists() else None
     import json
-    metrics_path = MODEL_DIR / "metrics.json"
+    metrics_path = MODEL_DIR / "hackathon_v2" / "metrics.json"
     state["metrics"] = (json.loads(metrics_path.read_text(encoding="utf-8"))
                         if metrics_path.exists() else {})
-    state["threshold"] = THRESHOLD
+    state["threshold"] = float(os.environ.get("SPAM_THRESHOLD", state["spam"]["threshold"]))
+    if not 0 <= state["threshold"] <= 1:
+        raise RuntimeError("порог должен лежать в диапазоне от 0 до 1")
 
 
 class Email(BaseModel):
-    text: str = Field(..., description="Текст письма (тема и тело)")
-    subject: Optional[str] = Field("", description="Тема письма")
-    sender: Optional[str] = Field("", description="Адрес отправителя")
+    text: str = Field(..., min_length=1, max_length=100000, description="Тело письма")
+    subject: Optional[str] = Field("", max_length=2000, description="Тема письма")
+    sender: Optional[str] = Field("", max_length=1000, description="Адрес отправителя")
 
 
 class Prediction(BaseModel):
@@ -74,7 +78,7 @@ class Prediction(BaseModel):
 
 def _to_frame(emails: List[Email]) -> pd.DataFrame:
     return pd.DataFrame([{
-        "text": e.text,
+        "text": (e.subject or "") + "\n" + e.text,
         "subject": e.subject or "",
         "sender": e.sender or "",
         "body": e.text,
@@ -88,40 +92,51 @@ def _predict(emails: List[Email]) -> List[Prediction]:
     if "spam" not in state:
         raise HTTPException(status_code=503, detail="модель не загружена")
     df = _to_frame(emails)
-    proba = predict_bundle(state["spam"], df)
+    proba = predict_hackathon_bundle(state["spam"], df)
     cats = (predict_category(state["category"], df["text"].tolist())
             if state.get("category") else ["—"] * len(df))
     thr = state["threshold"]
     out = []
-    for p, c, e in zip(proba, cats, emails):
+    for i, (p, c, e) in enumerate(zip(proba, cats, emails)):
+        url_features = email_url_features(df.iloc[i]["text"])
         flags = {
-            "urls": int(df.loc[df["text"] == e.text, "text"].str.count(r"https?://").iloc[0]),
-            "html": bool(df.loc[df["text"] == e.text, "is_html"].iloc[0]),
+            "urls": int(url_features["hack_url_count"]),
+            "html": bool(df.iloc[i]["is_html"]),
+            "brand_mimicry": bool(url_features["hack_max_brand_mimicry"]),
+            "userinfo_in_url": bool(url_features["hack_max_has_userinfo"]),
+            "network_requests": False,
         }
         out.append(Prediction(is_spam=bool(p >= thr), spam_probability=round(float(p), 5),
                               category=c, threshold=thr, flags=flags))
     return out
 
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
+def demo():
+    return (ROOT / "service" / "demo.html").read_text(encoding="utf-8")
+
+
+@app.get("/info")
 def root() -> dict:
     return {
         "service": "антиспам-фильтр",
         "owner": "MKB251-RazhnovAP",
         "version": app.version,
         "endpoints": ["/predict", "/predict_batch", "/health", "/docs"],
-        "model": "TF-IDF (слова + символьные n-граммы) + LR/SVM/NB/HistGB + стекинг",
+        "model": "TF-IDF + 94 признака письма + 50 признаков ссылок из хакатона + OOF-стекинг",
+        "basis": "https://github.com/Andrey123654/Hakaton",
     }
 
 
 @app.get("/health")
 def health() -> dict:
-    cv = (state.get("metrics") or {}).get("cv", {}).get("stack", {})
     return {
         "status": "ok" if "spam" in state else "no_model",
         "threshold": state.get("threshold"),
         "category_model": state.get("category") is not None,
-        "oof_f1": cv.get("f1"),
+        "model_kind": state.get("spam", {}).get("kind"),
+        "metrics_threshold": state.get("metrics", {}).get("threshold"),
+        "threshold_overridden": "SPAM_THRESHOLD" in os.environ,
     }
 
 

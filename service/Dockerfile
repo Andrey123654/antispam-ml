@@ -4,8 +4,7 @@ FROM python:3.14-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    MODEL_DIR=/app/artifacts \
-    SPAM_THRESHOLD=0.5
+    MODEL_DIR=/app/artifacts
 
 WORKDIR /app
 
@@ -19,7 +18,7 @@ COPY service/ /app/service/
 COPY scripts/ /app/scripts/
 
 # метрики (маленькие json) копируются, модели — скачиваются из Releases
-COPY artifacts/*.json /app/artifacts/
+COPY artifacts/ /app/artifacts/
 RUN python /app/scripts/fetch_models.py /app/artifacts
 
 EXPOSE 8000

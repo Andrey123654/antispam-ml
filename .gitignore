@@ -15,4 +15,17 @@ data/processed/test.csv
 # Обученные модели (48 МБ) лежат в GitHub Releases, а не в репозитории:
 # при сборке образа их скачивает scripts/fetch_models.py (см. Dockerfile).
 artifacts/*.joblib
+artifacts/**/*.joblib
+artifacts/**/*.npz
+artifacts/**/test_predictions.csv
+reports/validation/*.log
+reports/validation/release-assets/
+reports/validation/slides*
+reports/validation/docx*
+reports/validation/*.png
+reports/validation/*.pdf
+reports/legacy_v1/
 Итоговое_задание_антиспам.zip
+reports/validation/*
+!reports/validation/checks.json
+!reports/validation/docker-checks.json
