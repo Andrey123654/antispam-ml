@@ -29,3 +29,10 @@ reports/legacy_v1/
 reports/validation/*
 !reports/validation/checks.json
 !reports/validation/docker-checks.json
+
+# Local working notes and obsolete deliverables
+reports/*передачи*.md
+reports/*СБОЯ*.md
+reports/public_tunnel.log
+reports/figures/
+artifacts/legacy_v1/
