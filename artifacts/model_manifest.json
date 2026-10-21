@@ -1,0 +1,17 @@
+{
+  "release": "v3.0-models",
+  "models": [
+    {
+      "path": "hackathon_v2/spam_bundle.joblib",
+      "sha256": "e8a529706c4dc31992ddce5c8b32849d17abd3965cd254ab6c556ea746716509",
+      "size": 37725208,
+      "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v3.0-models/spam_bundle.joblib"
+    },
+    {
+      "path": "category_bundle.joblib",
+      "sha256": "ecbeb31d89d4e15d579d101835233739c4db909a3be3543f4ca5436716923eb9",
+      "size": 11753823,
+      "url": "https://github.com/Andrey123654/antispam-ml/releases/download/v3.0-models/category_bundle.joblib"
+    }
+  ]
+}

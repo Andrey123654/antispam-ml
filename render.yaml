@@ -1,0 +1,14 @@
+# Постоянный хостинг на Render (бесплатный тариф, Docker).
+# Имя сервиса образует домен: https://mkb251-razhnovap-antispam.onrender.com
+# Порядок: render.com → New → Blueprint → подключить этот репозиторий.
+services:
+  - type: web
+    name: mkb251-razhnovap-antispam
+    runtime: docker
+    dockerfilePath: ./service/Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: SERVICE_OWNER
+        value: "MKB251-RazhnovAP"

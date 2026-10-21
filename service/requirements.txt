@@ -1,0 +1,10 @@
+# версии совпадают с окружением, в котором обучена модель:
+# несовпадение мажорных версий scikit-learn ломает загрузку pickle
+fastapi==0.143.3
+uvicorn[standard]==0.54.0
+pydantic==2.14.1
+numpy==2.5.4
+pandas==3.0.6
+scikit-learn==1.9.1
+scipy==1.18.1
+joblib==1.6.0

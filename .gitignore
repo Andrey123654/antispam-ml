@@ -1,0 +1,38 @@
+.venv/
+__pycache__/
+*.pyc
+
+# сырые корпуса и тяжёлые промежуточные файлы (воспроизводятся scripts/download_data.sh)
+data/raw/
+data/processed/train.csv
+data/processed/dataset.csv
+*.tar.xz
+*.tar.gz
+*.zip
+
+data/processed/test.csv
+
+# Обученные модели (48 МБ) лежат в GitHub Releases, а не в репозитории:
+# при сборке образа их скачивает scripts/fetch_models.py (см. Dockerfile).
+artifacts/*.joblib
+artifacts/**/*.joblib
+artifacts/**/*.npz
+artifacts/**/test_predictions.csv
+reports/validation/*.log
+reports/validation/release-assets/
+reports/validation/slides*
+reports/validation/docx*
+reports/validation/*.png
+reports/validation/*.pdf
+reports/legacy_v1/
+Итоговое_задание_антиспам.zip
+reports/validation/*
+!reports/validation/checks.json
+!reports/validation/docker-checks.json
+
+# Local working notes and obsolete deliverables
+reports/*передачи*.md
+reports/*СБОЯ*.md
+reports/public_tunnel.log
+reports/figures/
+artifacts/legacy_v1/
